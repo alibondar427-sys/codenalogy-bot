@@ -1,0 +1,2882 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message",
+          "callback_query"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.5,
+      "position": [
+        -160,
+        64
+      ],
+      "id": "acd8cd07-aa60-44be-a257-c795501f5bac",
+      "name": "Telegram Trigger",
+      "webhookId": "ddad0a86-d897-41a5-81f9-1fce1f14474a",
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "telegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "3b844e0e-4c69-40e6-95e8-8f17ace824bb",
+              "leftValue": "={{ $('Telegram Trigger').item.json.message?.text.startsWith('/start') ? 'yes' : 'no' }}",
+              "rightValue": "yes",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        112,
+        -624
+      ],
+      "id": "072aa356-cdf1-43ed-a2b0-051884fd9947",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "📋 منوی اصلی کدنالوژی                                                               از گزینه‌های زیر یکی رو انتخاب کن:",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "🧰 مرکز ابزارهای AI",
+                    "additionalFields": {
+                      "callback_data": "menu_tools"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "AI Hunt 🔎 ",
+                    "additionalFields": {
+                      "callback_data": "menu_hunt"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "🏆 امتیاز و سطح من",
+                    "additionalFields": {
+                      "callback_data": "menu_points"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "🎁 فروشگاه امتیاز",
+                    "additionalFields": {
+                      "callback_data": "menu_shop"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "🔗 دعوت دوستان",
+                    "additionalFields": {
+                      "callback_data": "menu_invite"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "💬 مشاوره / چت AI",
+                    "additionalFields": {
+                      "callback_data": "menu_consult"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "📞 پشتیبانی",
+                    "additionalFields": {
+                      "callback_data": "menu_support"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        32,
+        512
+      ],
+      "id": "934a426d-2e49-4c1c-b328-219d26271746",
+      "name": "Send a text message",
+      "webhookId": "470a33b4-3ae0-4048-93e4-70300acda40c",
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "telegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "c6f9f183-2505-41b0-a2aa-bce385a395cd",
+              "leftValue": "={{ $('Telegram Trigger').item.json.message?.text }}",
+              "rightValue": "/menu",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -224,
+        528
+      ],
+      "id": "14ebe310-3dd5-4cc8-a15c-06cb13a0f592",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "سلام 👋                                                             به ربات کدنالوژی خوش اومدی!",
+        "replyMarkup": "replyKeyboard",
+        "replyKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "📋 منو اصلی",
+                    "additionalFields": {}
+                  },
+                  {
+                    "text": "📞 پشتیبانی",
+                    "additionalFields": {}
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "replyKeyboardOptions": {
+          "resize_keyboard": true
+        },
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        496,
+        -640
+      ],
+      "id": "0832688e-9616-4798-8e4b-91ae521df061",
+      "name": "Send a text message2",
+      "webhookId": "847e755e-8a78-4fe2-8e97-ea2621dce84b",
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "telegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "editMessageText",
+        "chatId": "={{ $('Telegram Trigger').item.json.callback_query.message.chat.id }}",
+        "messageId": "={{ $('Telegram Trigger').item.json.callback_query.message.message_id }}",
+        "replyMarkup": "inlineKeyboard",
+        "text": "={{ \"🧰 مرکز ابزارهای AI                                                                                              اینجا می‌تونی جدیدترین ابزارهای هوش مصنوعی رو ببینی.\" + '\\n\\n' + ($json.text || '') }}",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": ": 🔙 بازگشت به منو",
+                    "additionalFields": {
+                      "callback_data": "back_to_menu"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "disable_web_page_preview": true
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        710,
+        1300
+      ],
+      "id": "d2bdab8f-e5fb-4821-b520-5949e8885748",
+      "name": "Edit a text message",
+      "webhookId": "89eb6be3-ed18-4a39-a5f0-764283d0220c",
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "telegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "92f5c987-65c4-4fab-9f53-b755faa8b13d",
+              "leftValue": "={{ $('Telegram Trigger').item.json.callback_query?.data }}",
+              "rightValue": "back_to_menu",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        112,
+        -464
+      ],
+      "id": "240ed6f7-28cc-451f-b5df-268a8a58e7d8",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "operation": "editMessageText",
+        "chatId": "={{ $('Telegram Trigger').item.json.callback_query.message.chat.id }}",
+        "messageId": "={{ $('Telegram Trigger').item.json.callback_query.message.message_id }}",
+        "replyMarkup": "inlineKeyboard",
+        "text": "📋 منوی اصلی کدنالوژی                                                                از گزینه‌های زیر یکی رو انتخاب کن:",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "🧰 مرکز ابزارهای AI",
+                    "additionalFields": {
+                      "callback_data": "menu_tools"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "AI Hunt 🔎 ",
+                    "additionalFields": {
+                      "callback_data": "menu_hunt"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "🏆 امتیاز و سطح من",
+                    "additionalFields": {
+                      "callback_data": "menu_points"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "🎁 فروشگاه امتیاز",
+                    "additionalFields": {
+                      "callback_data": "menu_shop"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "🔗 دعوت دوستان",
+                    "additionalFields": {
+                      "callback_data": "menu_invite"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "💬 مشاوره / چت AI",
+                    "additionalFields": {
+                      "callback_data": "menu_consult"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "📞 پشتیبانی",
+                    "additionalFields": {
+                      "callback_data": "menu_support"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        448,
+        -480
+      ],
+      "id": "b46c25a7-c9f0-4858-8430-2776cf54e727",
+      "name": "Edit a text message1",
+      "webhookId": "60d96991-ab42-47fa-bf7c-e5370aaa9d38",
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "telegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Telegram Trigger').item.json.callback_query?.data }}",
+                    "rightValue": "menu_tools",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "2b020613-894f-4f27-a040-5c8bcc0478a3"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "ac58b380-07db-4b13-b122-f1a361d412ba",
+                    "leftValue": "={{ $('Telegram Trigger').item.json.callback_query?.data }}",
+                    "rightValue": "menu_hunt",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "5c8d20d2-9e04-4c9b-bbbc-e5f0f6c95e93",
+                    "leftValue": "={{ $('Telegram Trigger').item.json.callback_query?.data }}",
+                    "rightValue": "menu_points",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "830e2b9a-3171-45a6-990b-6ff5085613a7",
+                    "leftValue": "={{ $('Telegram Trigger').item.json.callback_query?.data }}",
+                    "rightValue": "menu_shop",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "edf76b76-a1a7-47b2-b56c-b3aef3d8695c",
+                    "leftValue": "={{ $('Telegram Trigger').item.json.callback_query?.data }}",
+                    "rightValue": "menu_invite",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "7245899e-a9cd-43d1-8d17-2848ffde0417",
+                    "leftValue": "={{ $('Telegram Trigger').item.json.callback_query?.data }}",
+                    "rightValue": "menu_consult",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "dce79776-591b-4084-b95e-ae68b179c8b5",
+                    "leftValue": "={{ $('Telegram Trigger').item.json.callback_query?.data }}",
+                    "rightValue": "menu_support",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "bc1d2c46-2632-47d8-bc08-0371e3f0159f",
+                    "leftValue": "={{ $('Telegram Trigger').item.json.callback_query?.data }}",
+                    "rightValue": "buy_",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith",
+                      "name": "filter.operator.startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        48,
+        -16
+      ],
+      "id": "3ec3ac3b-823d-4bfc-9a29-23b5d71cbd86",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "operation": "editMessageText",
+        "chatId": "={{ $('Telegram Trigger').item.json.callback_query.message.chat.id }}",
+        "messageId": "={{ $('Telegram Trigger').item.json.callback_query.message.message_id }}",
+        "replyMarkup": "inlineKeyboard",
+        "text": "={{ \"‏🔎 AI Hunt                                                                                                                هر روز یک پرامپت حرفه‌ای + یک ترفند کاربردی    \" + '\\n\\n' + ($json.prompt ? '📌 پرامپت امروز:\\n' + $json.prompt + '\\n\\n💡 ترفند امروز:\\n' + ($json.trick || '-') : 'امروز هنوز محتوایی ثبت نشده؛ فردا سر بزن 🙌') }}",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": ": 🔙 بازگشت به منو",
+                    "additionalFields": {
+                      "callback_data": "back_to_menu"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        480,
+        1500
+      ],
+      "id": "b628fb1c-3349-486d-8083-b538676b33ae",
+      "name": "Edit a text message2",
+      "webhookId": "993b38d0-cf38-4573-8746-0d4687a4d860",
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "telegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "editMessageText",
+        "chatId": "={{ $('Telegram Trigger').item.json.callback_query.message.chat.id }}",
+        "messageId": "={{ $('Telegram Trigger').item.json.callback_query.message.message_id }}",
+        "replyMarkup": "inlineKeyboard",
+        "text": "=🏆 امتیاز و سطح من  \n🌟 امتیاز فعلی شما: {{ $json.points ? $json.points : 0 }}  \nسطح شما:{{ Number($json.points ? $json.points : 0) >= 200 ? \"🥇 طلایی\" : (Number($json.points ? $json.points : 0) >= 50 ? \"🥈 نقره‌ای\" : \"🔰 مبتدی\") }}\nبا دعوت دوستان و فعالیت بیشتر، امتیاز جمع کن و سطحت رو ارتقا بده!",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": ": 🔙 بازگشت به منو",
+                    "additionalFields": {
+                      "callback_data": "back_to_menu"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        464,
+        80
+      ],
+      "id": "8c6d8a6d-7848-4b7c-a898-762c08fe6296",
+      "name": "Edit a text message3",
+      "webhookId": "e3e177d8-e45f-4566-8e4b-517ff207f7c8",
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "telegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "editMessageText",
+        "chatId": "={{ $('Telegram Trigger').item.json.callback_query.message.chat.id }}",
+        "messageId": "={{ $('Telegram Trigger').item.json.callback_query.message.message_id }}",
+        "replyMarkup": "inlineKeyboard",
+        "text": "={{ \"🎁 فروشگاه امتیاز                                                                   امتیازاتت رو با جوایز جذاب معاوضه کن.\" + '\\n\\n' + $json.text }}",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "🎁 1",
+                    "additionalFields": {
+                      "callback_data": "buy_1"
+                    }
+                  },
+                  {
+                    "text": "🎁 2",
+                    "additionalFields": {
+                      "callback_data": "buy_2"
+                    }
+                  },
+                  {
+                    "text": "🎁 3",
+                    "additionalFields": {
+                      "callback_data": "buy_3"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": ": 🔙 بازگشت به منو",
+                    "additionalFields": {
+                      "callback_data": "back_to_menu"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        710,
+        1700
+      ],
+      "id": "15ea9339-1388-4831-be6a-a29a80ac4909",
+      "name": "Edit a text message4",
+      "webhookId": "a80dac2f-f220-4b39-ad20-3216dfc09c56",
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "telegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "editMessageText",
+        "chatId": "={{ $('Telegram Trigger').item.json.callback_query.message.chat.id }}",
+        "messageId": "={{ $('Telegram Trigger').item.json.callback_query.message.message_id }}",
+        "replyMarkup": "inlineKeyboard",
+        "text": "=🔗 دعوت دوستان                                                                                                                                                                                                                                                                                                                  با دعوت دوستانت از این ربات، امتیاز جمع کن!                                                           هر دعوت موفق = ۵۰ امتیاز 🎉                                                                                       لینک اختصاصی شما:                                        https://t.me/CODENALOGYAIbot?start={{ $('Telegram Trigger').item.json.callback_query?.from?.id || $('Telegram Trigger').item.json.message?.from?.id }}                                                                           این لینک رو برای دوستات بفرست، وقتی از طریقش عضو ربات بشن، امتیاز میگیری!",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": ": 🔙 بازگشت به منو",
+                    "additionalFields": {
+                      "callback_data": "back_to_menu"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        448,
+        336
+      ],
+      "id": "7da0a473-10be-4baa-b418-5e766af26546",
+      "name": "Edit a text message5",
+      "webhookId": "ca488867-991e-43e8-8261-7dbc7fad0c57",
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "telegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "editMessageText",
+        "chatId": "={{ $('Telegram Trigger').item.json.callback_query.message.chat.id }}",
+        "messageId": "={{ $('Telegram Trigger').item.json.callback_query.message.message_id }}",
+        "replyMarkup": "inlineKeyboard",
+        "text": "💬 مشاوره / چت AI                                                                                                                    این بخش به هوش مصنوعی اختصاصی کدنا متصل می‌شود.",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": ": 🔙 بازگشت به منو",
+                    "additionalFields": {
+                      "callback_data": "back_to_menu"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        448,
+        480
+      ],
+      "id": "6693da22-5720-4e71-b302-ab7e1a490c05",
+      "name": "Edit a text message6",
+      "webhookId": "64298759-5b43-45b0-9dde-68c40745332e",
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "telegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "editMessageText",
+        "chatId": "={{ $('Telegram Trigger').item.json.callback_query.message.chat.id }}",
+        "messageId": "={{ $('Telegram Trigger').item.json.callback_query.message.message_id }}",
+        "replyMarkup": "inlineKeyboard",
+        "text": "📞 برای ارتباط با پشتیبانی، لطفاً پیام خود را همینجا ارسال کنید.",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": ": 🔙 بازگشت به منو",
+                    "additionalFields": {
+                      "callback_data": "back_to_menu"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        448,
+        608
+      ],
+      "id": "a3f55bed-c0dd-4b7e-9bc2-04bf952fb2ef",
+      "name": "Edit a text message7",
+      "webhookId": "bd898039-59a7-4ec9-8213-a639216cec91",
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "telegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "CODENALOGY_BOT_DB"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Users"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "telegram_id": "={{ $('Telegram Trigger').item.json.message?.from?.id || $('Telegram Trigger').item.json.callback_query?.from?.id }}",
+            "username": "={{ $('Telegram Trigger').first().json.message?.from?.username || $('Telegram Trigger').first().json.callback_query?.from?.username || '' }}",
+            "join_date": "={{ $now }}",
+            "points": "0",
+            "referral_code": "={{ $('Telegram Trigger').first().json.message?.from?.id || $('Telegram Trigger').first().json.callback_query?.from?.id }}",
+            "membership_verified": "true",
+            "last_check_date": "={{ $now }}",
+            "invited_by": "={{ $('Parse referral').first().json.ref }}"
+          },
+          "matchingColumns": [
+            "telegram_id"
+          ],
+          "schema": [
+            {
+              "id": "telegram_id",
+              "displayName": "telegram_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "username",
+              "displayName": "username",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "join_date",
+              "displayName": "join_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "points",
+              "displayName": "points",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "referral_code",
+              "displayName": "referral_code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "invited_by",
+              "displayName": "invited_by",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "membership_verified",
+              "displayName": "membership_verified",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "last_check_date",
+              "displayName": "last_check_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1072,
+        900
+      ],
+      "id": "938efc99-88ec-41ea-af3c-037c9d0ac1a0",
+      "name": "Create user",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "googleSheetsOAuth2Api"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "chat",
+        "operation": "member",
+        "chatId": "YOUR_CHANNEL_ID",
+        "userId": "={{ $json.message?.from?.id || $json.callback_query?.from?.id }}"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -80,
+        -336
+      ],
+      "id": "bd896b15-92ce-42a2-8a72-4b5df8fff122",
+      "name": "Get a member in a chat",
+      "webhookId": "11441a55-4b56-4416-9c30-e0fce81076a4",
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "telegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "19e7280b-d4c8-4a5d-a225-314f636404b1",
+              "leftValue": "={{ ['left','kicked'].includes($json.result.status) ? 'no' : 'yes' }}",
+              "rightValue": "yes",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        112,
+        -336
+      ],
+      "id": "cdecc95a-ba69-4a6d-918e-888eeb1a681a",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message?.chat?.id || $('Telegram Trigger').item.json.callback_query?.message?.chat?.id }}",
+        "text": "🔒 برای استفاده از ربات کدنالوژی، ابتدا باید عضو کانال بشی.                                          بعد از عضویت، دکمه «بررسی مجدد» رو بزن.",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "📢 عضویت در کانال",
+                    "additionalFields": {
+                      "url": "https://t.me/+YOUR_INVITE_LINK"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "🔄 بررسی مجدد",
+                    "additionalFields": {
+                      "callback_data": "=check_membership_{{ (() => { const t=$('Telegram Trigger').first().json; const m=t.message?.text||''; const c=t.callback_query?.data||''; return m.startsWith('/start ') ? m.split(' ')[1] : (c.startsWith('check_membership_') ? c.slice(17) : ''); })() }}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        448,
+        -320
+      ],
+      "id": "97102634-6b3a-4d94-baf0-a21235239fe2",
+      "name": "Send a text message1",
+      "webhookId": "7be1cb3b-efc7-4506-a76b-1ebfba7f245a",
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "telegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "3f3a28e8-3d8f-48a5-a44b-b153cb2203fa",
+              "leftValue": "={{ $('Telegram Trigger').item.json.callback_query?.data || '' }}",
+              "rightValue": "check_membership",
+              "operator": {
+                "type": "string",
+                "operation": "startsWith"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        688,
+        -384
+      ],
+      "id": "3e017ce5-2a93-4f32-bdb0-126d7282c156",
+      "name": "If5"
+    },
+    {
+      "parameters": {
+        "operation": "editMessageText",
+        "chatId": "={{ $('Telegram Trigger').item.json.callback_query.message.chat.id }}",
+        "messageId": "={{ $('Telegram Trigger').item.json.callback_query.message.message_id }}",
+        "text": "سلام 👋                                                                         به ربات کدنالوژی خوش اومدی!",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        912,
+        -480
+      ],
+      "id": "bb4d9b79-faa2-4577-bb5a-f8478596e3bc",
+      "name": "Edit a text message8",
+      "webhookId": "b6afa7b6-8a59-4031-86dd-fb3f6889b145",
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "telegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "5f1c272d-ce6e-448b-945c-f20b56cfd5a6",
+              "leftValue": "={{ String($json.telegram_id ?? '') }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        624,
+        900
+      ],
+      "id": "8b16aff8-34da-4cc4-a1ab-130ac3724751",
+      "name": "Is new user?"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Telegram Trigger').item.json.message?.text }}",
+                    "rightValue": "📋 منو اصلی",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "3917a84f-1923-4170-8f66-59d641608b1b"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "df342508-c7c1-4d68-a8a3-ed087df1f11e",
+                    "leftValue": "={{ $('Telegram Trigger').item.json.message?.text }}",
+                    "rightValue": "📞 پشتیبانی",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -544,
+        288
+      ],
+      "id": "fbdfc2b0-d063-4075-babc-cd8c6372e872",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "📞 پشتیبانی                                                                                           برای ارتباط با پشتیبانی، لطفاً پیام خود را همینجا ارسال کنید.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -432,
+        560
+      ],
+      "id": "e3723688-7f9f-4f4f-b2d7-966fd00d101e",
+      "name": "Send a text message3",
+      "webhookId": "b35f6b93-7e7f-4b6d-8760-b7c7cc9ead0d",
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "telegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2743934c-c2a5-4134-9a5b-8f3576a2308d",
+              "name": "referral_from",
+              "value": "={{ $('Telegram Trigger').item.json.message?.text.split(' ')[1] || '' }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        320,
+        -640
+      ],
+      "id": "c80eb0d5-83df-432d-bb59-c64bd45a8adb",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "CODENALOGY_BOT_DB"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Users"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "telegram_id",
+              "lookupValue": "={{ $('Telegram Trigger').item.json.message?.from?.id || $('Telegram Trigger').item.json.callback_query?.from?.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        400,
+        900
+      ],
+      "id": "f5148f5f-3630-4438-bb00-a265ff177805",
+      "name": "Lookup user",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "googleSheetsOAuth2Api"
+        }
+      },
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "90f694cc-d420-4f35-a993-63dad1e9643c",
+              "name": "new_points",
+              "type": "number",
+              "value": "={{ Number($json.points || 0) + 50 }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        1968,
+        900
+      ],
+      "id": "6d843707-6454-4150-9bdc-e99aa967f325",
+      "name": "Add 50 points"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "CODENALOGY_BOT_DB"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Users"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "telegram_id": "={{ $('Parse referral').first().json.ref }}",
+            "points": "={{ $json.new_points }}"
+          },
+          "matchingColumns": [
+            "telegram_id"
+          ],
+          "schema": [
+            {
+              "id": "telegram_id",
+              "displayName": "telegram_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "username",
+              "displayName": "username",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "join_date",
+              "displayName": "join_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "points",
+              "displayName": "points",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "referral_code",
+              "displayName": "referral_code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "invited_by",
+              "displayName": "invited_by",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "membership_verified",
+              "displayName": "membership_verified",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "last_check_date",
+              "displayName": "last_check_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2192,
+        900
+      ],
+      "id": "16f49528-7a35-44a5-96f8-bfd341099783",
+      "name": "Update inviter points",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "googleSheetsOAuth2Api"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "CODENALOGY_BOT_DB"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Users"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "telegram_id",
+              "lookupValue": "={{ $('Telegram Trigger').item.json.callback_query?.from?.id || $('Telegram Trigger').item.json.message?.from?.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        272,
+        48
+      ],
+      "id": "ead8f83e-4db8-4ec9-9a32-c4d2df1d9b7a",
+      "name": "Get row(s) in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "googleSheetsOAuth2Api"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9a96beed-5f53-4734-9134-72eac0d7602c",
+              "name": "ref",
+              "type": "string",
+              "value": "={{ (() => { const t=$('Telegram Trigger').first().json; const uid=String(t.message?.from?.id || t.callback_query?.from?.id); const m=t.message?.text||''; const c=t.callback_query?.data||''; const r = m.startsWith('/start ') ? m.split(' ')[1] : (c.startsWith('check_membership_') ? c.slice(17) : ''); return (/^\\d+$/.test(r||'') && r !== uid) ? r : ''; })() }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        848,
+        900
+      ],
+      "id": "dd0a805c-3e74-46f0-98f9-5cbd58386081",
+      "name": "Parse referral"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "b9897bfd-0d17-41ea-87c0-e81bb1ae70ae",
+              "leftValue": "={{ $('Parse referral').first().json.ref }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1296,
+        900
+      ],
+      "id": "238501d4-d965-4374-b64c-a3c4a628dfcd",
+      "name": "Has referrer?"
+    },
+    {
+      "parameters": {
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "telegram_id",
+              "lookupValue": "={{ $('Parse referral').first().json.ref }}"
+            }
+          ]
+        },
+        "options": {},
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "CODENALOGY_BOT_DB"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Users"
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1520,
+        900
+      ],
+      "id": "b77c0a75-e9f1-44c7-9bc3-2ae144b03f61",
+      "name": "Get inviter",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "googleSheetsOAuth2Api"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "cadac65c-a907-42a7-a2ef-51c166c1ec83",
+              "leftValue": "={{ String($json.telegram_id ?? '') }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1744,
+        900
+      ],
+      "id": "67385c42-8b25-4066-8584-0ae89771b22c",
+      "name": "Inviter exists?"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Parse referral').first().json.ref }}",
+        "text": "🎉 یک نفر با لینک دعوت تو وارد ربات شد!\n۵۰ امتیاز به حساب تو اضافه شد.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2416,
+        900
+      ],
+      "id": "5e26ca21-311a-4436-bb20-0c55686f7ce5",
+      "name": "Notify inviter",
+      "webhookId": "2bfecb35-14e4-4c07-953d-9d7c86642bfa",
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "telegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a40b5d3b-dba1-4f9a-8edd-f2c95b252b70",
+              "name": "admin_id",
+              "type": "string",
+              "value": "ADMIN_TELEGRAM_ID_HERE"
+            },
+            {
+              "id": "17cf6dd4-aad2-4881-85d6-0fb8ac421242",
+              "name": "shop_catalog",
+              "type": "string",
+              "value": "[{\"id\": 1, \"title\": \"پک پرامپت‌های ویژه\", \"cost\": 100}, {\"id\": 2, \"title\": \"مشاوره ۱۵ دقیقه‌ای\", \"cost\": 200}, {\"id\": 3, \"title\": \"اشتراک VIP یک‌ماهه\", \"cost\": 400}]"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -100,
+        -100
+      ],
+      "id": "74d9d9bf-6202-48ef-928b-6896c7d4c2cb",
+      "name": "Config"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "CODENALOGY_BOT_DB"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "AIHunt",
+          "mode": "name"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "date",
+              "lookupValue": "={{ $now.setZone('Asia/Tehran').toFormat('yyyy-MM-dd') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        250,
+        1500
+      ],
+      "id": "4de7f7be-74f5-445d-abaa-06dc382a717e",
+      "name": "Get today hunt",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "googleSheetsOAuth2Api"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "CODENALOGY_BOT_DB"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Users"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "telegram_id",
+              "lookupValue": "={{ $('Telegram Trigger').first().json.callback_query.from.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        250,
+        1700
+      ],
+      "id": "029d584c-4a64-4c85-a937-ebf57443fdb3",
+      "name": "Get user for shop",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "googleSheetsOAuth2Api"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const cat = JSON.parse($('Config').first().json.shop_catalog);\nconst points = Number($input.first().json.points || 0);\nlet text = '🌟 امتیاز تو: ' + points + '\\n\\n';\ncat.forEach(i => { text += i.id + '. ' + i.title + ' — ' + i.cost + ' امتیاز\\n'; });\ntext += '\\nشماره‌ی جایزه‌ای که می‌خوای رو انتخاب کن:';\nreturn [{ json: { text } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        1700
+      ],
+      "id": "7982890f-17a9-4911-994b-fded6c6dece8",
+      "name": "Shop view"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "CODENALOGY_BOT_DB"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Users"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "telegram_id",
+              "lookupValue": "={{ $('Telegram Trigger').first().json.callback_query.from.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        250,
+        1950
+      ],
+      "id": "29107674-2782-405e-a2d8-30d9dd123cd0",
+      "name": "Get user for buy",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "googleSheetsOAuth2Api"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const cat = JSON.parse($('Config').first().json.shop_catalog);\nconst t = $('Telegram Trigger').first().json;\nconst id = Number(t.callback_query.data.replace('buy_', ''));\nconst item = cat.find(i => i.id === id);\nconst u = $input.first().json;\nconst points = Number(u.points || 0);\nif (!u.telegram_id) return [{ json: { ok: false, text: 'ابتدا /start رو بزن.' } }];\nif (!item) return [{ json: { ok: false, text: 'این گزینه دیگه موجود نیست.' } }];\nif (points < item.cost) return [{ json: { ok: false, text: '❌ امتیاز کافی نیست.\\nامتیاز تو: ' + points + '\\nقیمت: ' + item.cost } }];\nconst left = points - item.cost;\nreturn [{ json: { ok: true, new_points: left, item: item.title, cost: item.cost,\n  text: '✅ «' + item.title + '» ثبت شد.\\n' + item.cost + ' امتیاز کم شد؛ امتیاز باقی‌مانده: ' + left + '\\nبه‌زودی پشتیبانی باهات تماس می‌گیره.' } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        1950
+      ],
+      "id": "66fd331b-8a80-480f-abf0-5ab695acf522",
+      "name": "Process purchase"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "23cdb8e2-1f57-48a0-a97b-c6645317ace3",
+              "leftValue": "={{ $json.ok ? 'yes' : 'no' }}",
+              "rightValue": "yes",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        710,
+        1950
+      ],
+      "id": "c06efc9c-35f7-4036-8ce2-91e71e951fe3",
+      "name": "Purchase ok?"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "CODENALOGY_BOT_DB"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Users"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "telegram_id": "={{ $('Telegram Trigger').first().json.callback_query.from.id }}",
+            "points": "={{ $json.new_points }}"
+          },
+          "matchingColumns": [
+            "telegram_id"
+          ],
+          "schema": [
+            {
+              "id": "telegram_id",
+              "displayName": "telegram_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "username",
+              "displayName": "username",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "join_date",
+              "displayName": "join_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "points",
+              "displayName": "points",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "referral_code",
+              "displayName": "referral_code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "invited_by",
+              "displayName": "invited_by",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "membership_verified",
+              "displayName": "membership_verified",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "last_check_date",
+              "displayName": "last_check_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        940,
+        1900
+      ],
+      "id": "15c16937-7c3b-4043-b00d-2e6b721601b2",
+      "name": "Deduct points",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "googleSheetsOAuth2Api"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "CODENALOGY_BOT_DB"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Orders",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "date": "={{ $now.setZone('Asia/Tehran').toFormat('yyyy-MM-dd HH:mm') }}",
+            "telegram_id": "={{ $('Telegram Trigger').first().json.callback_query.from.id }}",
+            "username": "={{ $('Telegram Trigger').first().json.callback_query.from.username || '' }}",
+            "item": "={{ $('Process purchase').first().json.item }}",
+            "cost": "={{ $('Process purchase').first().json.cost }}",
+            "status": "pending"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1170,
+        1900
+      ],
+      "id": "b24ebff9-1bb7-4964-b6ac-6d866a781c84",
+      "name": "Log order",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "googleSheetsOAuth2Api"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Config').first().json.admin_id }}",
+        "text": "={{ '🛒 سفارش جدید\\nID: ' + $('Telegram Trigger').first().json.callback_query.from.id + '\\nیوزرنیم: @' + ($('Telegram Trigger').first().json.callback_query.from.username || '-') + '\\nجایزه: ' + $('Process purchase').first().json.item + ' (' + $('Process purchase').first().json.cost + ' امتیاز)' }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1400,
+        1900
+      ],
+      "id": "6c7626d8-f58e-4bcc-b36c-3602977bcdfd",
+      "name": "Notify admin of order",
+      "webhookId": "394b031d-470a-4ed3-8813-39e07f0fe782",
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "telegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "editMessageText",
+        "chatId": "={{ $('Telegram Trigger').item.json.callback_query.message.chat.id }}",
+        "messageId": "={{ $('Telegram Trigger').item.json.callback_query.message.message_id }}",
+        "replyMarkup": "inlineKeyboard",
+        "text": "={{ $('Process purchase').first().json.text }}",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": ": 🔙 بازگشت به منو",
+                    "additionalFields": {
+                      "callback_data": "back_to_menu"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1630,
+        1950
+      ],
+      "id": "f792ceea-fd59-478c-8df2-d02d4bd9bf51",
+      "name": "Edit purchase result",
+      "webhookId": "ea037771-72b0-4db8-9aa5-9df89b1b42c5",
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "telegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4a8e7baf-1331-40a2-959b-44bc396a6d9e",
+              "leftValue": "={{ (() => { const m = $('Telegram Trigger').first().json.message; if (!m || !m.text || m.chat.type !== 'private') return 'no'; const tx = m.text; if (tx.startsWith('/') || ['📋 منو اصلی', '📞 پشتیبانی'].includes(tx)) return 'no'; return String(m.from.id) !== String($('Config').first().json.admin_id) ? 'yes' : 'no'; })() }}",
+              "rightValue": "yes",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        250,
+        2250
+      ],
+      "id": "9e33af98-6939-4c90-9f53-41e06d510a6e",
+      "name": "Is support message?"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Config').first().json.admin_id }}",
+        "text": "={{ '📩 پیام پشتیبانی\\nID: ' + $('Telegram Trigger').first().json.message.from.id + '\\nنام: ' + $('Telegram Trigger').first().json.message.from.first_name + '\\nیوزرنیم: @' + ($('Telegram Trigger').first().json.message.from.username || '-') + '\\n\\n' + $('Telegram Trigger').first().json.message.text + '\\n\\n↩️ برای پاسخ، روی همین پیام Reply بزن.' }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        480,
+        2250
+      ],
+      "id": "fc0807bc-ee9f-44ff-ba75-f64bfd0d1ffd",
+      "name": "Forward to admin",
+      "webhookId": "bc991a96-5f9f-43e2-a2cc-793f3a49e28a",
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "telegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').first().json.message.chat.id }}",
+        "text": "✅ پیامت برای پشتیبانی ارسال شد؛ به‌زودی جواب می‌دیم.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        710,
+        2250
+      ],
+      "id": "da1b5574-b9ca-4593-b5c9-12f5d1f44042",
+      "name": "Confirm to user",
+      "webhookId": "60180a91-06cc-4675-8934-e4929136901f",
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "telegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "591dc0d2-bb4f-4589-b1a0-1f14223da9af",
+              "leftValue": "={{ ($('Telegram Trigger').first().json.message?.reply_to_message?.text && String($('Telegram Trigger').first().json.message.from.id) === String($('Config').first().json.admin_id)) ? 'yes' : 'no' }}",
+              "rightValue": "yes",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        250,
+        2450
+      ],
+      "id": "4dd3224c-20f2-4b50-b12b-7f606c49e3f0",
+      "name": "Is admin reply?"
+    },
+    {
+      "parameters": {
+        "jsCode": "const m = $('Telegram Trigger').first().json.message;\nconst match = (m.reply_to_message.text || '').match(/ID:\\s*(\\d+)/);\nif (!match || !m.text) return [];\nreturn [{ json: { user_id: match[1], reply: m.text } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        2450
+      ],
+      "id": "abf5b0fc-37df-4db7-a082-f22392e6a103",
+      "name": "Parse reply target"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.user_id }}",
+        "text": "={{ '💬 پاسخ پشتیبانی:\\n\\n' + $json.reply }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        710,
+        2450
+      ],
+      "id": "6e3651e6-d54e-40fc-816d-2da2dde7859c",
+      "name": "Send reply to user",
+      "webhookId": "97625cd8-f2b8-4266-9ece-21130ad1edb0",
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "telegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "CODENALOGY_BOT_DB"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Tools",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        250,
+        1300
+      ],
+      "id": "de1bb802-a51c-402f-8588-653655830a6f",
+      "name": "Get tools",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "googleSheetsOAuth2Api"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const rows = $input.all().map(i => i.json).filter(r => r.name && String(r.active ?? 'TRUE').toUpperCase() !== 'FALSE');\nlet text = '';\nif (!rows.length) {\n  text += '\\nهنوز ابزاری ثبت نشده؛ به‌زودی پر می‌شه 🙌';\n  return [{ json: { text } }];\n}\nconst groups = {};\nrows.forEach(r => { (groups[r.category || 'متفرقه'] = groups[r.category || 'متفرقه'] || []).push(r); });\nlet shown = 0;\nouter: for (const cat of Object.keys(groups)) {\n  let block = '\\n📂 ' + cat + '\\n';\n  for (const r of groups[cat]) {\n    const line = '• ' + r.name + (r.description ? ' — ' + r.description : '') + (r.url ? '\\n  ' + r.url : '') + '\\n';\n    if ((text + block + line).length > 3800) { text += block + '\\n… و ابزارهای بیشتر به‌زودی'; break outer; }\n    block += line; shown++;\n  }\n  text += block;\n}\nreturn [{ json: { text } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        1300
+      ],
+      "id": "a87ae9ad-4967-43c9-882b-09e1fd4e270b",
+      "name": "Tools view"
+    }
+  ],
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Edit a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Get tools",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get today hunt",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get row(s) in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get user for shop",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit a text message5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit a text message6",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit a text message7",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get user for buy",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit a text message5": {
+      "main": [
+        []
+      ]
+    },
+    "Get a member in a chat": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If5",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Lookup user",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Is support message?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Is admin reply?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If5": {
+      "main": [
+        [
+          {
+            "node": "Edit a text message8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Send a text message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Edit a text message3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is new user?": {
+      "main": [
+        [
+          {
+            "node": "Parse referral",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create user": {
+      "main": [
+        [
+          {
+            "node": "Has referrer?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add 50 points": {
+      "main": [
+        [
+          {
+            "node": "Update inviter points",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lookup user": {
+      "main": [
+        [
+          {
+            "node": "Is new user?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse referral": {
+      "main": [
+        [
+          {
+            "node": "Create user",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has referrer?": {
+      "main": [
+        [
+          {
+            "node": "Get inviter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get inviter": {
+      "main": [
+        [
+          {
+            "node": "Inviter exists?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Inviter exists?": {
+      "main": [
+        [
+          {
+            "node": "Add 50 points",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update inviter points": {
+      "main": [
+        [
+          {
+            "node": "Notify inviter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Get a member in a chat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get today hunt": {
+      "main": [
+        [
+          {
+            "node": "Edit a text message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get user for shop": {
+      "main": [
+        [
+          {
+            "node": "Shop view",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Shop view": {
+      "main": [
+        [
+          {
+            "node": "Edit a text message4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get user for buy": {
+      "main": [
+        [
+          {
+            "node": "Process purchase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process purchase": {
+      "main": [
+        [
+          {
+            "node": "Purchase ok?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Purchase ok?": {
+      "main": [
+        [
+          {
+            "node": "Deduct points",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit purchase result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Deduct points": {
+      "main": [
+        [
+          {
+            "node": "Log order",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log order": {
+      "main": [
+        [
+          {
+            "node": "Notify admin of order",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notify admin of order": {
+      "main": [
+        [
+          {
+            "node": "Edit purchase result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is support message?": {
+      "main": [
+        [
+          {
+            "node": "Forward to admin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Forward to admin": {
+      "main": [
+        [
+          {
+            "node": "Confirm to user",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is admin reply?": {
+      "main": [
+        [
+          {
+            "node": "Parse reply target",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse reply target": {
+      "main": [
+        [
+          {
+            "node": "Send reply to user",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get tools": {
+      "main": [
+        [
+          {
+            "node": "Tools view",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tools view": {
+      "main": [
+        [
+          {
+            "node": "Edit a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "staticData": null,
+  "pinData": {},
+  "triggerCount": 0,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  }
+}
