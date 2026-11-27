@@ -30,15 +30,7 @@ Telegram Trigger -> Config -> بررسی عضویت کانال
 
 داده‌ی نمونه‌ی تب‌ها در `data/codenalogy-content.xlsx` است.
 
-## راه‌اندازی
-1. در n8n: **Import from File** و انتخاب `workflow/codenalogy-bot.n8n.json`.
-2. ساخت ربات با @BotFather و ساخت Credential تلگرام در n8n.
-3. ساخت Google Sheet با تب‌های بالا و اتصال Credential گوگل.
-4. جایگزینی مقدارها در ورک‌فلو: `YOUR_SHEET_ID`، `YOUR_CHANNEL_ID`، `YOUR_INVITE_LINK` و `admin_id` در نود Config.
-5. ذخیره و فعال‌سازی ورک‌فلو.
 
-## نکته‌ی امنیتی
-توکن ربات و اعتبارنامه‌ها داخل این مخزن نیست و نباید commit شود.
 
 ## ابزارها
 n8n, Telegram Bot API, Google Sheets
